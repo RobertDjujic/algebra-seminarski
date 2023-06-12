@@ -11,3 +11,6 @@ body {
   --color-black: #000;
   --color-white: #fff;
 }
+
+//components
+@import "./components/messages.scss";
