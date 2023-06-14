@@ -8,9 +8,6 @@ body {
 
 :root {
   //colors
-  --color-black: #000;
-  --color-white: #fff;
+  --color-black: #000000;
+  --color-white: #ffffff;
 }
-
-//components
-@import "./components/messages.scss";
