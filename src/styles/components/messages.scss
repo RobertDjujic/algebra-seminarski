@@ -13,7 +13,7 @@
     margin-top: 0.625rem;
 
     &.currentMember {
-      justify-content: flex-end;
+      justify-content: flex-start;
       flex-direction: row-reverse;
       text-align: right;
     }
@@ -35,7 +35,7 @@
 
       &__username {
         display: block;
-        color: var(--color-gray);
+        color: var(--color-gray-400);
         font-size: 0.875rem;
         padding-bottom: 0.25rem;
       }
@@ -50,7 +50,7 @@
         padding: 0.625rem;
 
         &.currentMember {
-          background-color: var(--color-orangered);
+          background-color: var(--color-orange);
         }
       }
     }

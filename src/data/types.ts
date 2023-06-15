@@ -1,5 +1,5 @@
 export type StateType = {
-  messages: MessagesType;
+  messages: MessagesType[];
   member: MemberType;
 };
 
