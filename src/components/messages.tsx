@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { MemberType, MessagesType } from "../data/types";
 
 type MessagesProps = {
@@ -8,20 +10,25 @@ type MessagesProps = {
 const Messages = ({ currentMember, messages }: MessagesProps) => {
   return (
     <ul className="messages">
-      {messages.map((message: MessagesType) => {
-        const messageFromMe =
-          message.member.username === currentMember.username;
-        const className = messageFromMe && "currentMember";
+      {messages.map((message: MessagesType, index: number) => {
+        const messageFromMe = message.member.id === currentMember.id;
+        const className = messageFromMe ? "currentMember" : "";
 
         return (
-          <li className={`messages__message ${className}`}>
+          <li className={`messages__message ${className}`} key={index}>
             <span
               className="messages__message__avatar"
-              style={{ backgroundColor: message.member.color }}
+              style={{
+                backgroundColor: messageFromMe
+                  ? currentMember.color
+                  : message.member.clientData.color,
+              }}
             />
             <div className={`messages__message__content ${className}`}>
               <div className="messages__message__content__username">
-                {message.member.username}
+                {messageFromMe
+                  ? currentMember.username
+                  : message.member.clientData.username}
               </div>
               <div className={`messages__message__content__text ${className}`}>
                 {message.text}

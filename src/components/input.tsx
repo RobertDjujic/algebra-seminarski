@@ -7,10 +7,14 @@ type InputProps = {
 } & InputHTMLAttributes<HTMLInputElement>;
 
 const Input = ({ inputValue, handleSend, ...props }: InputProps) => {
+  const handleClick = () => {
+    console.log("Button clicked");
+    handleSend(inputValue);
+  };
   return (
     <div className="input">
       <input className="input__text" {...props} />
-      <Button onClick={() => handleSend(inputValue)} text="Send" />
+      <Button onClick={() => handleClick()} text="Send" />
     </div>
   );
 };
