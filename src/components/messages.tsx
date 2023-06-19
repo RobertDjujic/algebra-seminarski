@@ -2,17 +2,12 @@
 
 import { MemberType, MessagesType } from "../data/types";
 
-type MessagesProps = {
-  currentMember: MemberType;
-  messages: MessagesType[];
-};
-
-const Messages = ({ currentMember, messages }: MessagesProps) => {
+const Messages = ({ currentMember, messages }) => {
   return (
     <ul className="messages">
-      {messages.map((message: MessagesType, index: number) => {
+      {messages.map((message, index) => {
         const messageFromMe = message.member.id === currentMember.id;
-        const className = messageFromMe ? "currentMember" : "";
+        const className = messageFromMe && "currentMember";
 
         return (
           <li className={`messages__message ${className}`} key={index}>

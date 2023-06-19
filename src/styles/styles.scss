@@ -7,28 +7,22 @@ body {
   margin: 0;
 }
 
-.App {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100vh;
-}
-
 :root {
   //border
   --border-rounded: 0.5rem;
 
   //colors
-  --color-black: #000000;
+  --color-black: #000;
   --color-blue: #6495ed;
   --color-gray-400: #808080;
-  --color-gray-700: #262626;
+  --color-gray-500: #262626;
   --color-orange: #ff4500;
-  --color-white: #ffffff;
+  --color-white: #fff;
 }
 
 //components
 @import "./components/button.scss";
+@import "./components/container.scss";
 @import "./components/header.scss";
 @import "./components/input.scss";
 @import "./components/messages.scss";

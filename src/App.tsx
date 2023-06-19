@@ -8,20 +8,23 @@ import { useEffect, useState } from "react";
 import Header from "./components/header";
 import Input from "./components/input";
 import Messages from "./components/messages";
+import Container from "./components/container";
+
+const initialState = {
+  messages: [],
+  member: {
+    username: randomName(),
+    color: randomColor(),
+  },
+};
 
 const App = () => {
-  const [state, setState] = useState<StateType>({
-    messages: [],
-    member: {
-      username: randomName(),
-      color: randomColor(),
-    },
-  });
-  const [inputValue, setInputValue] = useState<string>("");
+  const [state, setState] = useState(initialState);
+  const [inputValue, setInputValue] = useState("");
   const [drone, setDrone] = useState(null);
   const [room, setRoom] = useState(null);
 
-  const handleSend = (message: string) => {
+  const handleSend = (message) => {
     if (inputValue === "") {
       return;
     }
@@ -41,10 +44,7 @@ const App = () => {
       });
       setDrone(newDrone);
 
-      const newRoom = newDrone.subscribe("observable-room");
-      setRoom(newRoom);
-
-      newDrone.on("open", (error: any) => {
+      newDrone.on("open", (error) => {
         if (error) {
           console.error(error);
           return;
@@ -53,6 +53,9 @@ const App = () => {
         state.member.id = newDrone.clientId;
         setState((prevState) => ({ ...prevState, ...state.member }));
       });
+
+      const newRoom = newDrone.subscribe("observable-room");
+      setRoom(newRoom);
 
       newRoom.on("data", (data, member) => {
         setState((prevState) => ({
@@ -75,7 +78,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className="App">
+    <Container>
       <Header text="My Chat App" />
       {room ? (
         <Messages currentMember={state.member} messages={state.messages} />
@@ -97,7 +100,7 @@ const App = () => {
         type="text"
         value={inputValue}
       />
-    </div>
+    </Container>
   );
 };
 
